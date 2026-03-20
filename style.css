@@ -1,0 +1,517 @@
+/* ═══════════════════════════════════════════
+   PARKER ELLYN MADLOCK — Portfolio
+   ═══════════════════════════════════════════ */
+
+/* ─── TOKENS ─── */
+:root {
+  --yellow:  #ffff99;
+  --sat-yellow: #fffff5;
+  --black:   #000321;
+  --red:     #E3120B;
+  --klein:   #0035A9;
+  --powder:  #A8C8E8;
+  --serif:   'Cormorant Garamond', Georgia, serif;
+  --pad-h:   clamp(32px, 5vw, 80px);   /* horizontal page padding */
+  --pad-l:   72px;                      /* left padding — clears hole-punch */
+}
+
+/* ─── RESET ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--serif);
+  overflow-x: hidden;
+  cursor: crosshair;
+}
+
+a { color: inherit; text-decoration: none; }
+em { font-style: italic; }
+
+/* ─── NAV ─── */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px var(--pad-h);
+  background: transparent;
+  font-family: var(--serif);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--black);
+}
+
+.nav-name {
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+}
+
+.nav-links a {
+  font-weight: 500;
+  text-transform: uppercase;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.nav-links a:hover { opacity: 1; }
+
+/* ─── SHEET ─── */
+.sheet {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 -6px 28px rgba(0, 0, 0, 0.14);
+}
+
+/* Shadow cast by the bottom edge of a peeling sheet onto the one below */
+.sheet::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.2));
+  opacity: var(--peel, 0);
+  pointer-events: none;
+  z-index: 20;
+}
+
+/* ─── HOLE PUNCH ─── */
+.hole {
+  position: absolute;
+  left: 24px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.06);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+  transform: translateY(-50%);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.sheet > .hole:nth-child(1) { top: 40%; }
+.sheet > .hole:nth-child(2) { top: 60%; }
+#contact .hole:nth-child(2) { background: #0035A9 !important; }
+
+
+/* ─── HERO ─── */
+#hero {
+  background: var(--yellow);
+  color: var(--black);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px var(--pad-h) 64px var(--pad-l);
+}
+
+.hero-meta {
+  position: absolute;
+  top: 80px;
+  left: var(--pad-l);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.45;
+}
+
+.hero-headline {
+  display: flex;
+  flex-direction: column;
+  font-weight: 300;
+  font-size: clamp(42px, 10vw, 160px);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+}
+
+.hl-line { display: block; }
+
+.hl-italic { font-style: italic; }
+
+/* Breathing ellipsis — dots fade in one by one on a loop */
+.ellipsis { display: inline; }
+
+.ellipsis .dot {
+  display: inline;
+  animation: dotPulse 2.2s ease-in-out infinite;
+}
+.ellipsis .dot:nth-child(2) { animation-delay: 0.35s; }
+.ellipsis .dot:nth-child(3) { animation-delay: 0.7s; }
+
+@keyframes dotPulse {
+  0%, 100% { opacity: 0.2; }
+  50%       { opacity: 1;   }
+}
+
+span.accent { color: var(--klein); }
+
+.hero-byline {
+  position: absolute;
+  bottom: 40px;
+  left: var(--pad-l);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-variant: small-caps;
+  opacity: 0.4;
+}
+
+/* ─── ABOUT ─── */
+#about {
+  background: var(--sat-yellow);
+  color: var(--black);
+  display: flex;
+  align-items: center;
+  padding: 100px var(--pad-h) 100px var(--pad-l);
+}
+
+
+.about-inner { width: 100%; }
+
+.about-pull {
+  font-size: clamp(1.8rem, 3.8vw, 3.2rem);
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  max-width: 800px;
+  margin-bottom: 60px;
+  padding-bottom: 52px;
+  border-bottom: 1px solid rgba(0, 3, 33, 0.15);
+}
+
+.about-columns {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 0 clamp(32px, 5vw, 80px);
+  align-items: start;
+}
+
+.about-bio {
+  font-size: 1rem;
+  line-height: 1.85;
+  opacity: 0.7;
+  max-width: 500px;
+}
+
+.about-sidebar {
+  border-left: 1px solid rgba(0, 3, 33, 0.18);
+  padding-left: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.sidebar-block h4 {
+  font-size: 9px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  font-weight: 500;
+  opacity: 0.38;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(0, 3, 33, 0.12);
+}
+
+.sidebar-block p {
+  font-size: 0.875rem;
+  line-height: 1.75;
+  opacity: 0.6;
+}
+
+/* ─── WORK ─── */
+#work {
+  background: var(--yellow);
+  color: var(--black);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 100px var(--pad-h) 80px var(--pad-l);
+}
+
+.work-title {
+  font-size: 9px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  font-variant: small-caps;
+  font-weight: 500;
+  opacity: 0.4;
+  margin-bottom: 40px;
+}
+
+.project-row {
+  display: grid;
+  grid-template-columns: 72px 1fr auto;
+  align-items: center;
+  gap: 24px;
+  padding: 22px 0;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.12);
+  cursor: default;
+  transition: background 0.4s ease, color 0.3s ease;
+}
+
+.project-row:hover { color: var(--klein); }
+
+.project-row:first-of-type {
+  border-top: 0.5px solid rgba(0, 0, 0, 0.12);
+}
+
+
+.proj-year {
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  opacity: 0.38;
+}
+
+.proj-title {
+  font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.1;
+}
+
+.proj-cat {
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.35;
+  text-align: right;
+}
+
+/* ─── CONTACT ─── */
+#contact {
+  background: var(--yellow);
+  color: var(--black);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.contact-top {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 28px;
+  padding: 100px var(--pad-h) 60px var(--pad-l);
+}
+
+.contact-headline {
+  font-size: clamp(36px, 8vw, 9rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 0.92;
+  letter-spacing: -0.025em;
+}
+
+.contact-email {
+  font-size: clamp(0.9rem, 1.8vw, 1.2rem);
+  font-style: italic;
+  opacity: 0.5;
+  border-bottom: 1px solid rgba(0, 3, 33, 0.28);
+  display: inline-block;
+  padding-bottom: 3px;
+  align-self: flex-start;
+  transition: opacity 0.2s;
+}
+
+.contact-email:hover { opacity: 1; }
+
+.footer-ombre {
+  min-height: 50vh;
+  background: var(--yellow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 60px var(--pad-h);
+}
+
+.footer-name {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 5.5vw, 5.5rem);
+  font-weight: 300;
+  color: var(--black);
+  letter-spacing: 0.12em;
+  text-align: center;
+}
+
+.footer-copy {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--black);
+  opacity: 0.4;
+}
+
+/* ─── RESPONSIVE ─── */
+
+/* ── 768px and below (tablet + mobile) ── */
+@media (max-width: 768px) {
+  :root {
+    --pad-h: 24px;
+    --pad-l: 44px;   /* clears 14px hole at left:24px + breathing room */
+  }
+
+  /* NAV: keep name, hide links */
+  .nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+
+  /* HOLES: scale down to 14px */
+  .hole {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* HERO */
+  #hero { padding: 60px 24px 48px 44px; }
+  .hero-meta { top: 60px; left: 44px; }
+  .hero-byline { left: 44px; }
+
+  /* ABOUT */
+  #about {
+    padding: 72px 24px 56px 44px;
+    align-items: flex-start;
+  }
+  .about-pull {
+    font-size: clamp(1.5rem, 5vw, 3.2rem);
+    margin-bottom: 32px;
+    padding-bottom: 28px;
+  }
+  .about-columns {
+    grid-template-columns: 1fr;
+    gap: 32px 0;
+  }
+  .about-sidebar {
+    border-left: none;
+    border-top: 0.5px solid rgba(0, 3, 33, 0.15);
+    padding-left: 0;
+    padding-top: 24px;
+  }
+
+  /* WORK */
+  #work { padding: 72px 24px 56px 44px; }
+  .project-row {
+    grid-template-columns: 44px 1fr;
+    gap: 16px;
+  }
+  .proj-cat { display: none; }
+  .proj-title { font-size: clamp(1.3rem, 5vw, 2.2rem); }
+
+  /* CONTACT */
+  .contact-top { padding: 72px 24px 48px 44px; }
+  .contact-email { font-size: 1rem; }
+  .footer-ombre { padding: 48px 24px; min-height: 40vh; }
+  .footer-name { font-size: clamp(1.6rem, 8vw, 5.5rem); }
+}
+
+/* ── 480px and below (small phones) ── */
+@media (max-width: 480px) {
+  .about-pull { font-size: clamp(1.3rem, 5vw, 2rem); }
+  .work-title { margin-bottom: 28px; }
+  .project-row { padding: 16px 0; }
+}
+
+
+/* ─── EASTER EGG ─── */
+
+
+.easter-folder {
+  position: absolute;
+  left: 6px;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 16;
+  transform: translateY(-50%) scale(0);
+  transform-origin: center center;
+}
+
+.easter-folder img {
+  width: 64px;
+  height: auto;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+}
+
+.easter-folder.visible {
+  opacity: 1;
+  pointer-events: auto;
+  cursor: pointer;
+  animation:
+    easterPop   0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both,
+    easterFloat 2s  ease-in-out 0.5s infinite;
+}
+
+@keyframes easterPop {
+  from { transform: translateY(-50%) scale(0); }
+  to   { transform: translateY(-50%) scale(1); }
+}
+
+@keyframes easterFloat {
+  0%, 100% { transform: translateY(-50%);           }
+  50%      { transform: translateY(calc(-50% - 2px)); }
+}
+
+.easter-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 3, 33, 0.72);
+  z-index: 500;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.easter-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.easter-card {
+  position: fixed;
+  width: 155px;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 501;
+  transform-origin: center center;
+  cursor: default;
+}
+
+.easter-card.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.easter-card img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  display: block;
+}
+
+.easter-card .card-label {
+  font-family: var(--serif);
+  font-size: 11px;
+  line-height: 1.4;
+  color: #000321;
+  padding: 8px;
+  text-align: center;
+}

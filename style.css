@@ -131,7 +131,7 @@ em { font-style: italic; }
   flex-direction: column;
   font-weight: 300;
   font-size: clamp(42px, 10vw, 160px);
-  line-height: 0.9;
+  line-height: 0.88;
   letter-spacing: -0.02em;
 }
 
@@ -341,11 +341,33 @@ span.accent { color: var(--klein); }
 
 .footer-name {
   font-family: var(--serif);
-  font-size: clamp(2rem, 5.5vw, 5.5rem);
+  font-size: clamp(12px, 2vw, 24px);
   font-weight: 300;
   color: var(--black);
   letter-spacing: 0.12em;
   text-align: center;
+}
+
+.footer-links {
+  display: flex;
+  gap: 10px;
+}
+
+.footer-btn {
+  font-family: var(--serif);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--black);
+  border: 1px solid var(--black);
+  padding: 6px 14px;
+  background: transparent;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.footer-btn:hover {
+  background: var(--black);
+  color: var(--yellow);
 }
 
 .footer-copy {

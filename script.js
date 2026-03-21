@@ -90,81 +90,13 @@ onScroll(); // initialize on load
 
 if (!('ontouchstart' in window)) {
 
-  // ─── CUSTOM CURSOR ───
-
-  const cursorStyle = document.createElement('style');
-  cursorStyle.textContent = '* { cursor: none !important; }';
-  document.head.appendChild(cursorStyle);
-
-  const dot = document.createElement('div');
-  dot.style.cssText = `
-    position: fixed;
-    width: 5px;
-    height: 5px;
-    background: #000321;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    transition: opacity 0.15s;
-  `;
-  document.body.appendChild(dot);
-
-  const ring = document.createElement('div');
-  ring.style.cssText = `
-    position: fixed;
-    width: 28px;
-    height: 28px;
-    border: 1px solid #000321;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    transition: opacity 0.2s, width 0.22s ease, height 0.22s ease;
-  `;
-  document.body.appendChild(ring);
-
   let mouseX = window.innerWidth  / 2;
   let mouseY = window.innerHeight / 2;
-  let ringX  = mouseX;
-  let ringY  = mouseY;
-  let cursorVisible = false;
 
   document.addEventListener('mousemove', e => {
     mouseX = e.clientX;
     mouseY = e.clientY;
-    dot.style.left = mouseX + 'px';
-    dot.style.top  = mouseY + 'px';
-    if (!cursorVisible) {
-      dot.style.opacity  = '1';
-      ring.style.opacity = '1';
-      cursorVisible = true;
-    }
   });
-
-  (function animateRing() {
-    ringX += (mouseX - ringX) * 0.1;
-    ringY += (mouseY - ringY) * 0.1;
-    ring.style.left = ringX + 'px';
-    ring.style.top  = ringY + 'px';
-    requestAnimationFrame(animateRing);
-  })();
-
-  document.querySelectorAll('a, .project-row').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      ring.style.width  = '48px';
-      ring.style.height = '48px';
-      dot.style.opacity = '0';
-    });
-    el.addEventListener('mouseleave', () => {
-      ring.style.width  = '28px';
-      ring.style.height = '28px';
-      dot.style.opacity = '1';
-    });
-  });
-
 
   // ─── ATMOSPHERIC GLOW ───
   // Two overlapping glow divs — blue and red. Cross-fading their opacity

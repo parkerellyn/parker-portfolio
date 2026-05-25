@@ -178,4 +178,27 @@ if (!('ontouchstart' in window)) {
     });
   });
 
+  // ─── EXPERIENCE ROW RADIAL GLOW ───
+
+  document.querySelectorAll('.exp-row').forEach(row => {
+    row.addEventListener('mousemove', e => {
+      const rect = row.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      row.style.background =
+        `radial-gradient(circle at ${x}px ${y}px, rgba(0,53,169,0.13) 0%, transparent 65%)`;
+    });
+    row.addEventListener('mouseleave', () => {
+      row.style.background = '';
+    });
+  });
+
 } // end mouse-only features
+
+// ─── EXPERIENCE ROW CLICK-TO-EXPAND ───
+
+document.querySelectorAll('.exp-row').forEach(row => {
+  row.addEventListener('click', () => {
+    row.classList.toggle('open');
+  });
+});

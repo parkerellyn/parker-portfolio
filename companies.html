@@ -72,11 +72,14 @@
   .names span:not(:last-child)::after { content: "\00B7"; color: var(--muted); margin: 0 0.4em; }
 
   footer { border-top: 1px solid var(--rule); padding: 64px 0 48px; }
-  footer .big {
-    display: inline-block;
-    font-size: clamp(30px, 6vw, 56px); font-weight: 300; font-style: italic;
-    line-height: 1.05; margin: 14px 0 56px;
-    word-break: break-word;
+  footer .ask {
+    font-size: clamp(40px, 7vw, 72px); font-weight: 300; font-style: italic;
+    line-height: 1; letter-spacing: -0.02em; margin-bottom: 18px;
+  }
+  footer .email {
+    display: inline-block; font-size: clamp(22px, 3vw, 28px); font-weight: 300;
+    color: var(--blue); text-decoration: underline; text-decoration-thickness: 1px;
+    text-underline-offset: 5px; margin-bottom: 56px; word-break: break-word;
   }
   footer .back { font-size: 22px; font-weight: 300; }
   footer .back span { color: var(--blue); }
@@ -109,7 +112,7 @@
 </header>
 
 <main>
-  <h1>I translate big ideas...<br><em>into <span class="blue">effective</span> strategies.</em></h1>
+  <h1>Companies I <em class="blue">admire</em><br><em>at the moment.</em></h1>
 
   <section id="startups">
     <h2>Startups</h2>
@@ -171,8 +174,8 @@
   </section>
 
   <footer>
-    <span class="label muted">Know someone here?</span><br>
-    <a class="big" href="mailto:parker.madlock@gmail.com">parker.madlock@gmail.com</a>
+    <p class="ask">Know someone here?</p>
+    <a class="email" href="mailto:parker.madlock@gmail.com">parker.madlock@gmail.com</a>
     <p><a class="back" href="/"><span>&larr;</span> Back to parkermadlock.com</a></p>
   </footer>
 </main>
